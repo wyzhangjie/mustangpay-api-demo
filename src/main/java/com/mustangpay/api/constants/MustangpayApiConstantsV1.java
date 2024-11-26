@@ -13,8 +13,8 @@ public interface MustangpayApiConstantsV1 {
     String preCreateUrl = baseUrl + "/openApi/merchant_direct/cashier/preorder";
     String checkOrderUrl = baseUrl + "/openApi/merchant_direct/cashier/getOrderStatusByMerchantOrderNo";
     String h2hPreCreateUrl = baseUrl + "/openApi/merchant_h2h/preorder";
-  String testPreCreateUrl = testBaseUrl + "/openApi/merchant_direct/cashier/preorder";
-  String testCheckOrderUrl = testBaseUrl + "/openApi/merchant_direct/cashier/getOrderStatusByMerchantOrderNo";
-  String testH2hPreCreateUrl = testBaseUrl + "/openApi/merchant_h2h/preorder";
+    String testPreCreateUrl = testBaseUrl + "/openApi/merchant_direct/cashier/preorder";
+    String testCheckOrderUrl = testBaseUrl + "/openApi/merchant_direct/cashier/getOrderStatusByMerchantOrderNo";
+    String testH2hPreCreateUrl = testBaseUrl + "/openApi/merchant_h2h/preorder";
 
 }
