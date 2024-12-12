@@ -6,6 +6,7 @@ import lombok.ToString;
 
 import javax.validation.Valid;
 import javax.validation.constraints.*;
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,9 +15,7 @@ import java.util.List;
  * @Date: 08/13/2024
  */
 @Data
-@JsonIgnoreProperties(ignoreUnknown = true)
-@ToString
-public class H2HCreateCashierReq  {
+public class H2HCreateCashierReq  implements Serializable {
     /**
      * merchant name
      */

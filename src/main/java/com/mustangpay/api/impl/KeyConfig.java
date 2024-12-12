@@ -14,4 +14,12 @@ public interface KeyConfig {
 
     String getVersion();
     String geTestMustangPayApiUrl(String name);
+
+
+    String getProRsaPublicKeyPath();
+
+    String getProRsaPrivateKeyPath();
+
+    String getProMustangPayPublicKeyPath();
+
 }

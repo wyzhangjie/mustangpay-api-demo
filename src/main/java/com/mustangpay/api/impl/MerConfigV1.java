@@ -1,10 +1,6 @@
 package com.mustangpay.api.impl;
 
 import com.mustangpay.api.constants.MustangpayApiConstantsV1;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.ResourceLoader;
-import org.springframework.stereotype.Component;
 
 /**
  * @Author: hyssop
@@ -15,7 +11,7 @@ public class MerConfigV1 implements KeyConfig {
     @Override
     public String getRsaPrivateKeyPath() {
         try{
-            return getClass().getClassLoader().getResource("").getPath()+"mustangpay/4449999220.pri.key";
+            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order/test/4449999220-test.pri.key";
         }catch (Exception e){
             return null;
         }
@@ -24,7 +20,7 @@ public class MerConfigV1 implements KeyConfig {
     @Override
     public String getMustangPayPublicKeyPath() {
         try{
-            return getClass().getClassLoader().getResource("").getPath()+"mustangpay/mustangpay.pub.key";
+            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order/test/mustangpay-test.pub.key";
         }catch (Exception e){
             return null;
         }
@@ -33,7 +29,7 @@ public class MerConfigV1 implements KeyConfig {
     @Override
     public String getRsaPublicKeyPath() {
         try{
-            return getClass().getClassLoader().getResource("").getPath()+"mustangpay/4449999220.pub.key";
+            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order/test/4449999220-test.pub.key";
         }catch (Exception e){
             return null;
         }
@@ -70,6 +66,39 @@ public class MerConfigV1 implements KeyConfig {
         if(name.equals("h2hPreCreate")){
             return MustangpayApiConstantsV1.testH2hPreCreateUrl;
         }
+        if(name.equals("refundCreate")){
+            return MustangpayApiConstantsV1.testRefundCreateUrl;
+        }
+        if(name.equals("refundQuery")){
+            return MustangpayApiConstantsV1.testRefundQueryUrl;
+        }
         return null;
+    }
+
+    @Override
+    public String getProRsaPublicKeyPath() {
+        try{
+            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order/pro/4449999220.pub.key";
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public String getProRsaPrivateKeyPath() {
+        try{
+            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order/pro/4449999220.pri.key";
+        }catch (Exception e){
+            return null;
+        }
+    }
+
+    @Override
+    public String getProMustangPayPublicKeyPath() {
+        try{
+            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order/pro/mustangpay.pub.key";
+        }catch (Exception e){
+            return null;
+        }
     }
 }

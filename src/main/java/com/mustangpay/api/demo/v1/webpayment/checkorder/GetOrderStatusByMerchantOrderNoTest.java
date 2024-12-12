@@ -2,9 +2,7 @@ package com.mustangpay.api.demo.v1.webpayment.checkorder;
 
 import com.mustangpay.api.constants.MustangpayApiConstantsV1;
 import com.mustangpay.api.enums.OperationEnum;
-import com.mustangpay.api.pojo.CashierCreateResp;
 import com.mustangpay.api.pojo.MerchantOrderStatusReq;
-import com.mustangpay.api.pojo.ResponseResult;
 import com.mustangpay.api.utils.mustangpay.MustangpayApiUtilsV1;
 import lombok.extern.slf4j.Slf4j;
 
@@ -21,8 +19,7 @@ public class GetOrderStatusByMerchantOrderNoTest {
         req.setMerchantId(MustangpayApiConstantsV1.merchantId);
         //首先执行PreOrderTest 获得reference 字段
         req.setMerchantOrderNo("a3470b0d-436b-443e-8ebf-997e7a46150a");
-        MustangpayApiUtilsV1 v1 = new MustangpayApiUtilsV1();
-        ResponseResult<CashierCreateResp> result =  v1.callMustangPayPreOrderApi("GetOrderStatusByMerchantOrderNoTest", req, OperationEnum.CHECKORDER.getCode());
+        Map<String, Object> result =  MustangpayApiUtilsV1.callMustangPayPreOrderApi("GetOrderStatusByMerchantOrderNoTest", req, OperationEnum.CHECKORDER.getCode());
         log.info("GetOrderStatusByMerchantOrderNoTest result ->{}", result);
     }
 }
