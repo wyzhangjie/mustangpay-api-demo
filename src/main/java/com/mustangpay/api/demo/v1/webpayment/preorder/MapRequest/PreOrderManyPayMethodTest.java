@@ -1,4 +1,4 @@
-package com.mustangpay.api.demo.v1.webpayment.preorder;
+package com.mustangpay.api.demo.v1.webpayment.preorder.MapRequest;
 
 import com.mustangpay.api.constants.MustangpayApiConstantsV1;
 import com.mustangpay.api.enums.OperationEnum;

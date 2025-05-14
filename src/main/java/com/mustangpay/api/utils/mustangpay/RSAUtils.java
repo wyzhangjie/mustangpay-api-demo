@@ -5,9 +5,7 @@ import org.apache.commons.io.IOUtils;
 
 import javax.crypto.Cipher;
 import javax.crypto.NoSuchPaddingException;
-import java.io.BufferedReader;
-import java.io.ByteArrayOutputStream;
-import java.io.FileReader;
+import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.security.*;
 import java.security.interfaces.RSAPrivateKey;
@@ -270,5 +268,19 @@ public class RSAUtils {
         }
        return str;
     }
+
+    public static String getKeyPem(InputStream inputStream) throws IOException {
+        StringBuilder strBuilder = new StringBuilder();
+        try (BufferedReader br = new BufferedReader(new InputStreamReader(inputStream))) {
+            br.readLine(); // 跳过第一行
+            String s = br.readLine();
+            while (s != null && s.charAt(0) != '-') {
+                strBuilder.append(s);
+                s = br.readLine();
+            }
+        }
+        return strBuilder.toString();
+    }
+
 
 }

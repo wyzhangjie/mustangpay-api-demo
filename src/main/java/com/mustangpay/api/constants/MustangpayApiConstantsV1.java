@@ -9,7 +9,9 @@ public interface MustangpayApiConstantsV1 {
   String baseUrl="https://openapi.mustangpay.co.za";
   String testBaseUrl="https://openapi-dev.mstpay-inc.com";
   //String testBaseUrl="https://openapi-test.mstpay-inc.com";
-    String merchantId = "4449999220";
+   // String merchantId = "4449999220";
+ // String merchantId = "21251005000358664";
+  String merchantId = "21251018000033416";
     String merchentV2="21251000800976235";
     String merchantReturnUrl = baseUrl + "/interface/ykMerApi/merchantReturnUrl";
     String preCreateUrl = baseUrl + "/openApi/merchant_direct/cashier/preorder";

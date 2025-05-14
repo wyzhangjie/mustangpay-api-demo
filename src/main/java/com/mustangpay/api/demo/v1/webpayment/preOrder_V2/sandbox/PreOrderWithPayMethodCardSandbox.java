@@ -1,13 +1,13 @@
-package com.mustangpay.api.demo.v1.webpayment.preorder;
+package com.mustangpay.api.demo.v1.webpayment.preOrder_V2.sandbox;
 
-import com.mustangpay.api.constants.MustangpayApiConstantsV1;
+import com.mustangpay.api.constants.VooCommenceV1;
+import com.mustangpay.api.enums.CurrencyEnum;
 import com.mustangpay.api.enums.OperationEnum;
 import com.mustangpay.api.enums.PayMethodEnum;
 import com.mustangpay.api.pojo.Amount;
 import com.mustangpay.api.pojo.CreateCashierReq;
-import com.mustangpay.api.enums.CurrencyEnum;
 import com.mustangpay.api.pojo.Product;
-import com.mustangpay.api.utils.mustangpay.MustangpayApiUtilsV1;
+import com.mustangpay.api.utils.mustangpay.WSandboxApiUtilsV1;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.*;
@@ -17,13 +17,14 @@ import java.util.*;
  * @Date: 08/28/2024
  */
 @Slf4j
-public class PreOrderWithManyPayMethodTest {
-    public static void main(String[] args) {
+public class PreOrderWithPayMethodCardSandbox {
+    //该方法是商户要唤起收银台的时候指定支付方式来唤起收银台，如果给到一个payMethod，说明该商户只想用payMethod来下单支付，
+    //收银台会跳到二级页面，做卡支付（目前只支持卡支付），
+    public static void main(String[] args) throws Exception{
         // Assuming the Amount and Product classes are defined elsewhere with constructors as needed
-        Amount amount = new Amount(1035L, CurrencyEnum.ZAR.getCode()); // Assuming constructor accepts amount and currency code
+        Amount amount = new Amount(1000L, CurrencyEnum.ZAR.getCode()); // Assuming constructor accepts amount and currency code
         Product product = new Product("productname", "short", "productDesc_b74f45d43c9c");
 
-        // Create a unique reference for each run
         String uniqueReference = UUID.randomUUID().toString();
 
         // Create CreateCashierReq object
@@ -45,13 +46,11 @@ public class PreOrderWithManyPayMethodTest {
         createCashierReq.setVat(new Amount(10L, CurrencyEnum.ZAR.getCode())); // Assuming VAT is also of type Amount
         createCashierReq.setVatNumber("vatNumber_d98853c8c10c");
         createCashierReq.setMetadata(new HashMap<>());
-        createCashierReq.setMerchantId("4449999220");
-        List<String> payMethods = new ArrayList<>();
-        payMethods.add(PayMethodEnum.INSTANT_EFT.getCode());
-        createCashierReq.setPayMethods(payMethods);
-        createCashierReq.setRemark("兰特B-CN Index-Recharge");
-        Map<String, Object> result =  MustangpayApiUtilsV1.callTest("PreOrderWithManyPayMethodTest", createCashierReq, OperationEnum.PRECREATE.getCode());
-        //{result={"code":"000000","data":{"cashierUrl":"http://110.238.76.97:90/pre-cashier?orderNo=qDsST5U5zPzdKre7N9ueEXLV7ECYTNw0HVM9v0a4Owc=","merchantId":"4449999220","orderNo":"2408281010032775693","orderStatus":"Initial","reference":"993eb0b4-cae7-49b6-a34c-6369317f08cb"},"msg":"ok","sign":"PJfGlnoNNWLUt9gHFptGIvpHm0uEEbHcHMdoc57vWYhp2VfmMUrbub3APsMqTEZ-UfggQPi7-GNWkWjgccjy486zTPiQgCdqmNNSZp_wiwA3x28ubx0HUuKs8q8uytLzWNVmrtn8DDK0xWMyJGoFMA2kcFAvONmoLwS56w-mt1sEb1MNBsFcq88V6V_168vIPWWXO3cO8Nk5hqbPaUs5Pgh6sSnbbJ4buQy-Tdr_utzLY4WWO3BQ7Amrm2teHSC8zkn5u00_9MwMUY4kwRwUMMGR8P0XCvYrAYVuJbDNKshgEHwi-uEmXH0gzu4AEcDdoL7SqTZo9qDmMKLDsoMKUw"}, code=S}
-        log.info("PreOrderWithManyPayMethodTest result ->{}", result);
+        createCashierReq.setMerchantId(VooCommenceV1.merchantId);
+        createCashierReq.setPayMethods(Collections.singletonList(PayMethodEnum.CARD_PAYMENT.getCode()));
+        Map<String, Object> result =  WSandboxApiUtilsV1.callSandboxMustangPayPreOrderApi("PreOrderWithPayMethodCardTest", createCashierReq, OperationEnum.PRECREATE.getCode());
+        //{result={"code":"000000","data":{"cashierUrl":"http://110.238.76.97:90/pre-cashier?orderNo=F6RQPjco8t0VhyHlwIf5j3lAggrZlbniCl1ve33jDtI=","merchantId":"4449999220","orderNo":"2408281010032767517","orderStatus":"Initial","reference":"9d02a217-e5b4-4404-b2c9-df1ae8273ad5"},"msg":"ok","sign":"SpIWTc4ECRhi-Eab_yDQIi_MQQP6wn1GS7iXUahyWe5sgL8Gx0X6Kgny4gNdS4EZKugxXZcrDvWQGXau2JumKaseJ_r5UfOo1PWsG-3ceeJ1mN1s7Eau7QUYvfeScc9eIuioADmxZMtAdHwwcvdoLyZ3nENrHbs1jZ7XgWOy4OKhWmasIurjnZpGclkif4Hm1iIr_NFQVQy32bqBoTCz2MEBae5Cyeo6_a-3ZwwhyzAiFxWAEvRpDhsMRhf_HcSOgE7lDYUdcPfFUtJP9_CCojmMfLInaF0ZBEsumMybbFVaNOlayCocztjPPpsadGgegoE20jQMX4vdMNSTWOZH9A"}, code=S}
+        log.info("PreOrderWithPayMethodCardTest result ->{}", result);
+
     }
 }

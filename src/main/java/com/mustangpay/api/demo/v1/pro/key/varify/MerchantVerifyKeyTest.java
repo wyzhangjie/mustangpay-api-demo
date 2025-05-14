@@ -5,6 +5,7 @@ import com.mustangpay.api.impl.pro.ProKeyConfigV1;
 import com.mustangpay.api.utils.mustangpay.verifyKeyApiUtilsV1;
 
 /**
+ * https://buffaloex.feishu.cn/wiki/GZqIwHDBhixBHakjXLOciXwknah
  * @Author: hyssop
  * @Date: 09/18/2024
  */

@@ -5,9 +5,9 @@ package com.mustangpay.api.impl;
  */
 public interface KeyConfig {
 
-    String getRsaPublicKeyPath();
+    String getMerchantPublicKeyPath(String merchantName);
 
-    String getRsaPrivateKeyPath();
+    String getMerchantPrivateKeyPath(String merchantName);
 
     String getMustangPayPublicKeyPath();
     String getMustangPayApiUrl(String name);
@@ -16,10 +16,12 @@ public interface KeyConfig {
     String geTestMustangPayApiUrl(String name);
 
 
-    String getProRsaPublicKeyPath();
+    String getProMerchantPublicKeyPath(String merchantName);
 
-    String getProRsaPrivateKeyPath();
+    String getProMerchantPrivateKeyPath(String name);
 
     String getProMustangPayPublicKeyPath();
+
+    String geSandboxMustangPayApiUrl(String name);
 
 }

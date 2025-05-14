@@ -1,6 +1,7 @@
 package com.mustangpay.api.impl;
 
 import com.mustangpay.api.constants.MustangpayApiConstantsV1;
+import com.mustangpay.api.constants.VooCommenceV1;
 
 /**
  * @Author: hyssop
@@ -8,10 +9,12 @@ import com.mustangpay.api.constants.MustangpayApiConstantsV1;
  */
 public class MerConfigV1 implements KeyConfig {
 
+
+
     @Override
-    public String getRsaPrivateKeyPath() {
+    public String getMerchantPrivateKeyPath(String merchantName) {
         try{
-            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order/test/4449999220-test.pri.key";
+            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order/test/"+merchantName+"-test.pri.key";
         }catch (Exception e){
             return null;
         }
@@ -20,16 +23,17 @@ public class MerConfigV1 implements KeyConfig {
     @Override
     public String getMustangPayPublicKeyPath() {
         try{
-            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order/test/mustangpay-test.pub.key";
+            return getClass().getClassLoader().getResource("").getPath()+"mustangpay/mustangpay.pub.key";
+
         }catch (Exception e){
             return null;
         }
     }
 
     @Override
-    public String getRsaPublicKeyPath() {
+    public String getMerchantPublicKeyPath(String merchantName) {
         try{
-            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order/test/4449999220-test.pub.key";
+            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order/test/"+merchantName+"-test.pub.key";
         }catch (Exception e){
             return null;
         }
@@ -76,18 +80,18 @@ public class MerConfigV1 implements KeyConfig {
     }
 
     @Override
-    public String getProRsaPublicKeyPath() {
+    public String getProMerchantPublicKeyPath(String merchantName) {
         try{
-            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order/pro/4449999220.pub.key";
+            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order.pro/"+merchantName+".pub.key";
         }catch (Exception e){
             return null;
         }
     }
 
     @Override
-    public String getProRsaPrivateKeyPath() {
+    public String getProMerchantPrivateKeyPath(String merchantName) {
         try{
-            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order/pro/4449999220.pri.key";
+            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order.pro/"+merchantName+".pri.key";
         }catch (Exception e){
             return null;
         }
@@ -96,9 +100,30 @@ public class MerConfigV1 implements KeyConfig {
     @Override
     public String getProMustangPayPublicKeyPath() {
         try{
-            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order/pro/mustangpay.pub.key";
+            return getClass().getClassLoader().getResource("").getPath()+ "mustangpay/order.pro/mustangpay.pub.key";
         }catch (Exception e){
             return null;
         }
+    }
+
+    @Override
+    public String geSandboxMustangPayApiUrl(String name) {
+        if(name.equals("preCreate")){
+            return VooCommenceV1.sandboxPreCreateUrl;
+        }
+        if(name.equals("checkOrder")){
+            return VooCommenceV1.sandboxCheckOrderUrl;
+        }
+        if(name.equals("h2hPreCreate")){
+            return VooCommenceV1.sandboxH2hPreCreateUrl;
+        }
+        if(name.equals("refundCreate")){
+            return VooCommenceV1.sandboxRefundCreateUrl;
+        }
+        if(name.equals("refundQuery")){
+            return VooCommenceV1.sandboxRefundQueryUrl;
+        }
+        return null;
+
     }
 }
